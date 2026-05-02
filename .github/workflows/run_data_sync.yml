@@ -283,6 +283,14 @@ jobs:
           git commit -m 'update new runs' || echo 'nothing to commit'
           git push || echo 'nothing to push'
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Build Running Page
         run: |
           pnpm install
