@@ -283,6 +283,23 @@ jobs:
           git commit -m 'update new runs' || echo 'nothing to commit'
           git push || echo 'nothing to push'
 
+      - name: Build Running Page
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Pushes to Hugo Repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
+        with:
+          source-directory: 'dist'
+          destination-github-username: 'ECNUjohnny'
+          destination-repository-name: 'ECNUjohnny.github.io'
+          target-directory: 'static/running'
+          user-email: JohnnyLynd@outlook.com
+          target-branch: main  # 或者你的Hugo主分支名
+
       - name: Set Output
         id: set_output
         env:

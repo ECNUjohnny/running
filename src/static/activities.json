@@ -1,18 +1,1 @@
-[
-    {
-        "run_id": 18196680895,
-        "name": "\u508d\u665a\u8dd1\u6b65",
-        "distance": 2116.7,
-        "moving_time": "0:12:22",
-        "type": "Run",
-        "subtype": "Run",
-        "start_date": "2026-04-21 11:42:35+00:00",
-        "start_date_local": "2026-04-21 19:42:35",
-        "location_country": "\u9ad8\u80fd\u8857, \u51cc\u6c34\u8857\u9053, \u683e\u91d1\u6751, \u7518\u4e95\u5b50\u533a, \u5927\u8fde\u5e02, \u8fbd\u5b81\u7701, 116026, \u4e2d\u56fd",
-        "summary_polyline": "ynelFketdVTi@f@m@HSJg@GUgAi@iA_@u@OSGSCUKKAMG]GU[a@?SEsA]i@WSEQMo@QgAg@WGYKICk@W_B|@Yn@Wr@Yj@c@f@_@TQFa@Ha@BC?UK[E]@QAk@?yB`@gAb@a@TOL}A~@SRSHa@^o@b@MNWRkC~AQHg@FeAZqARCC?K?oAEs@ScB]qD?cBEQY@[GEGa@U}AA_@B}@Ag@Go@Cc@BQCIKCMCs@MaAAe@KeAAa@ECCQ?s@KiBC{BMmAEyABW",
-        "average_heartrate": 144.2,
-        "average_speed": 2.853,
-        "elevation_gain": 9.0,
-        "streak": 10
-    }
-]
+[]
