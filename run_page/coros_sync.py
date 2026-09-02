@@ -6,8 +6,7 @@ import time
 
 import aiofiles
 import httpx
-
-from config import JSON_FILE, SQL_FILE, FOLDER_DICT
+from config import FOLDER_DICT, JSON_FILE, SQL_FILE
 from utils import make_activities_file
 
 COROS_URL_DICT = {
@@ -166,7 +165,7 @@ async def download_and_generate(account, password, only_run, file_type):
             for label_id in to_generate_coros_ids
         ],
     )
-    print(f"Download finished. Elapsed {time.time()-start_time} seconds")
+    print(f"Download finished. Elapsed {time.time() - start_time} seconds")
     await coros.req.aclose()
     make_activities_file(SQL_FILE, folder, JSON_FILE, file_type)
 
