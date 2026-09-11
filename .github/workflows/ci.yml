@@ -36,21 +36,18 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v6
         with:
           node-version: '20'
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          # 这里故意去掉了 cache 相关的配置，让它没有任何借口去读旧数据
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: |
+          rm -f pnpm-lock.yaml
+          npm install
 
       - name: Run build
-        run: |
-          pnpm run build
+        run: npm run build
         env:
           VITE_MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
