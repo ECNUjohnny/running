@@ -286,14 +286,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
 
       - name: Build Running Page
         run: |
           rm -f pnpm-lock.yaml package-lock.json
           npm install
-          npm build
+          npm run build
 
       - name: Pushes to Hugo Repo
         uses: cpina/github-action-push-to-another-repository@main
