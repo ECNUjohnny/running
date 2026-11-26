@@ -38,9 +38,12 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: read
       pages: write
       id-token: write
+    env:
+      PAGES_ARTIFACT_NAME: pages-artifact-${{ github.run_attempt }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -103,10 +106,24 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist repository
-          name: pages-artifact
+          name: ${{ env.PAGES_ARTIFACT_NAME }}
           path: './dist'
+      - name: Wait for Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in {1..10}; do
+            if artifact_count=$(gh api \
+              "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts?name=${PAGES_ARTIFACT_NAME}" \
+              --jq '.total_count') && [[ "$artifact_count" == "1" ]]; then
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Pages artifact ${PAGES_ARTIFACT_NAME} did not become available."
+          exit 1
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: pages-artifact
+          artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
